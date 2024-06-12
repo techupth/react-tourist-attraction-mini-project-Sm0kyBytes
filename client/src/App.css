@@ -45,6 +45,7 @@ input {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 .highlight-image-container {
   margin: 10px;
@@ -61,6 +62,13 @@ input {
   border-radius: 10%;
   margin: 10px;
 }
+.post-title {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2em;
+  font-weight: bolder;
+}
+
 .postDescription {
   width: 600px;
   white-space: nowrap;
@@ -85,6 +93,25 @@ input {
   color: gray;
 }
 .tag {
+  border: none;
+  background-color: white;
+  color: grey;
   margin-inline: 5px;
   text-decoration: underline;
+}
+.tag:hover {
+  color: #000;
+}
+.copyURL {
+  color: cornflowerblue;
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  transform: rotate(0.375turn) scale(1.5);
+}
+.copyURL:hover {
+  color: cadetblue;
+}
+.copyURL:active {
+  color: blue;
 }

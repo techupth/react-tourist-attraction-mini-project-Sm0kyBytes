@@ -2,10 +2,14 @@
 import { css } from "@emotion/react";
 import "/src/App.css";
 //Display by rendering list
-function TripPost(tripPost) {
+function TripPost(props) {
+  const handleOnClick = (tag) => {
+    // console.log(tag);
+    props.setSearchPost(tag);
+  };
   return (
     <>
-      {tripPost.map((post) => {
+      {props.tripPost.map((post) => {
         return (
           <div className="post-container" key={post.eid}>
             <div className="highlight-image-container">
@@ -17,7 +21,9 @@ function TripPost(tripPost) {
             </div>
             <div className="content-container">
               <div className="content">
-                <h3>{post.title}</h3>
+                <a className="post-title" href={post.url} target="_black">
+                  {post.title}
+                </a>
                 <div className="postDescription baseTextColor">
                   {post.description}
                 </div>
@@ -30,14 +36,28 @@ function TripPost(tripPost) {
                     // console.log(post.tags.length);
                     if (index !== post.tags.length - 1) {
                       return (
-                        <span className="tag" key={index}>
+                        <button
+                          className="tag"
+                          key={index}
+                          onClick={() => {
+                            handleOnClick({ tag });
+                          }}
+                        >
                           {tag}
-                        </span>
+                        </button>
                       );
                     } else {
                       return (
                         <span key={index}>
-                          และ <span className="tag">{tag}</span>
+                          และ{" "}
+                          <button
+                            className="tag"
+                            onClick={() => {
+                              handleOnClick({ tag });
+                            }}
+                          >
+                            {tag}
+                          </button>
                         </span>
                       );
                     }
@@ -57,6 +77,14 @@ function TripPost(tripPost) {
                 })}
               </div>
             </div>
+            <span
+              className="material-symbols-outlined copyURL"
+              onClick={() => {
+                navigator.clipboard.writeText(post.url);
+              }}
+            >
+              link
+            </span>
           </div>
         );
       })}

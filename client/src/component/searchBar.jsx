@@ -12,6 +12,14 @@ function SearchBar() {
   const handleOnChange = (e) => {
     setSearchPost(e.target.value);
   };
+  const setSearchPostFormTag = (tagInput) => {
+    // console.log(tagInput);
+    if (!searchPost.includes(tagInput.tag)) {
+      const newSearchPost = `${searchPost} ${tagInput.tag}`;
+      setSearchPost(newSearchPost.trim());
+    }
+    console.log(tripPost);
+  };
   const searchTripPost = async () => {
     try {
       setIsError(false);
@@ -44,7 +52,14 @@ function SearchBar() {
       {/* Trip post */}
       <div className="tripPostContainer">
         {isError ? <h1>Request failed</h1> : null}
-        {isLoading ? <h1>Loading ....</h1> : TripPost(tripPost)}
+        {isLoading ? (
+          <h1>Loading ....</h1>
+        ) : (
+          <TripPost tripPost={tripPost} setSearchPost={setSearchPostFormTag} />
+        )}
+        {/* {console.log(tripPost)} */}
+        {/* {tripPost[0] ? console.log("yes") : console.log("no") */}
+        {tripPost[0] ? null : <>{`Not found "${searchPost}"`}</>}
       </div>
     </div>
   );
