@@ -8,11 +8,13 @@ function TripPost(tripPost) {
       {tripPost.map((post) => {
         return (
           <div className="post-container" key={post.eid}>
-            <img
-              className="highlight-image"
-              src={post.photos[0]}
-              alt="photo 1"
-            />
+            <div className="highlight-image-container">
+              <img
+                className="highlight-image"
+                src={post.photos[0]}
+                alt="photo 1"
+              />
+            </div>
             <div className="content-container">
               <div className="content">
                 <h3>{post.title}</h3>
